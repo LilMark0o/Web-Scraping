@@ -17,10 +17,9 @@ def plotAVGSalaryPerProfession():
     for bar, profession, salaryAVGunit in zip(ax.patches, professions[::-1], salaryAVG):
         ax.text(0.1, bar.get_y()+bar.get_height()/2, (profession+" $"+str(round(salaryAVGunit/1000000, 2))+"M"),
                 color='white', ha='left', va='center')
+    plt.savefig("graphics/barChartAvgSalary.png", dpi=1200)
 
     plt.show()
-
-    plt.savefig("graphics/pieChartAvgSalary.png", dpi=300, bbox_inches='tight')
 
 
 plotAVGSalaryPerProfession()
