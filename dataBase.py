@@ -45,9 +45,23 @@ def deleteData(Job: Job):
     myCursor.execute("DELETE FROM Jobs WHERE link= %s;", (Job.link,))
 
 
+def avergPerJob():
+    # query = "SELECT profession, modality, avg( salary ) as avg_salary FROM `Jobs` GROUP BY profession, modality;"
+    query = "SELECT profession, avg( salary ) as avg_salary FROM `Jobs` GROUP BY profession ORDER BY avg_salary ASC;"
+    myCursor.execute(query)
+    professions = []
+    salaryAVG = []
+    for tuple in myCursor:
+        professions.append(tuple[0])
+        salaryAVG.append(tuple[1])
+
+    return (professions, salaryAVG)
+
+
 # pepe = Job(profession="Hostelero", link="a",
 #            salary="$ 3,500,000.00 (Mensual)", place="Bogotá, DC")
 # insertData(pepe)
 # checkDataGeneral()
 # deleteData(pepe)
 # checkDataGeneral()
+avergPerJob()

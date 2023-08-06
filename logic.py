@@ -72,11 +72,13 @@ def siguientePagina(driver):
     ignored_exceptions = (NoSuchElementException,
                           StaleElementReferenceException,)
     my_element_id = '//*[@id="offersGridOfferContainer"]/div[8]/span[2]'
-
-    your_element = WebDriverWait(driver, 10, ignored_exceptions=ignored_exceptions)\
-        .until(expected_conditions.presence_of_element_located((By.XPATH, my_element_id)))
-    your_element.click()
-    time.sleep(2)
+    try:
+        your_element = WebDriverWait(driver, 10, ignored_exceptions=ignored_exceptions)\
+            .until(expected_conditions.presence_of_element_located((By.XPATH, my_element_id)))
+        your_element.click()
+    except:
+        pass
+    time.sleep(1)
     checkForNotifications(driver)
     print("-- pasamos de pagina --")
 
